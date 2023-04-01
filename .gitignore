@@ -1,2 +1,5 @@
-.env# created by virtualenv automatically
-*
+.pyvenv.cfg
+.idea
+__pycache__
+.vscode
+.DS_Store

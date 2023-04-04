@@ -36,19 +36,7 @@ def main():
 
     headers, params = {"Authorization": os.getenv("BITLY_TOKEN")}, {"long_url": user_link}
 
-    if user_link:
-        try:
-            response = requests.get(user_link)
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as error:
-            print("Ошибка ввода")
-            exit("Can't get data from server:\n{0}".format(error))
-        except MissingSchema:
-            print('URL is not complete/bitlink')
-
-        is_bitlink(headers, params, user_link)
-    else:
-        print("Ошибка ввода")
+    is_bitlink(headers, params, user_link)
 
 if __name__ == "__main__":
     main()

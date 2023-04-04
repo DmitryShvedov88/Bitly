@@ -20,9 +20,11 @@ def total_clicks(headers, user_link):
 
 def is_bitlink(headers, params, user_link):
     try:
-        print(f'http://{shorten_link(headers, params)}')
-    except requests.exceptions.HTTPError as error:
+        print(1)
         print('Колличество переходов по ссылки Битли:', total_clicks(headers, user_link))
+    except requests.exceptions.HTTPError as error:
+        print(2)
+        print(f'http://{shorten_link(headers, params)}')
 
 def main():
     from dotenv import load_dotenv, find_dotenv

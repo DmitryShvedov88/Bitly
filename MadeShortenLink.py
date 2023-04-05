@@ -19,12 +19,16 @@ def total_clicks(headers, user_link):
     return response.json()["total_clicks"]
 
 def is_bitlink(headers, params, user_link):
+
     try:
-        print(1)
-        print('Колличество переходов по ссылки Битли:', total_clicks(headers, user_link))
+        summ_link = 'https://api-ssl.bitly.com/v4/bitlinks/{bitlink}/'
+        total_clicks = summ_link.format(bitlink=user_link)
+        response = requests.get(total_clicks, headers=headers)
+        response.raise_for_status()
+        is_bitlink = True
     except requests.exceptions.HTTPError as error:
-        print(2)
-        print(f'http://{shorten_link(headers, params)}')
+        is_bitlink = False
+    return is_bitlink
 
 def main():
     from dotenv import load_dotenv, find_dotenv
@@ -39,6 +43,11 @@ def main():
     headers, params = {"Authorization": os.getenv("BITLY_TOKEN")}, {"long_url": user_link}
 
     is_bitlink(headers, params, user_link)
+
+    if is_bitlink==True:
+        print('Колличество переходов по ссылки Битли:', total_clicks(headers, user_link))
+    else:
+        print(f'http://{shorten_link(headers, params)}')
 
 if __name__ == "__main__":
     main()

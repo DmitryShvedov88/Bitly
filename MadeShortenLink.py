@@ -1,16 +1,19 @@
 import requests
 import os
 import argparse
-from requests.exceptions import MissingSchema
 
-def shorten_link(headers, params):
+
+def shorten_link():
+    headers={"Authorization": os.getenv("BITLY_TOKEN")}
+    params={"long_url": user_link}
     short_link = 'https://api-ssl.bitly.com/v4/bitlinks'
     response = requests.post(short_link, json=params, headers=headers)
     response.raise_for_status()
 
     return response.json()["id"]
 
-def total_clicks(headers, user_link):
+def total_clicks(user_link):
+    headers = {"Authorization": os.getenv("BITLY_TOKEN")}
     summ_link = 'https://api-ssl.bitly.com/v4/bitlinks/{bitlink}/clicks/summary'
     total_clicks = summ_link.format(bitlink=user_link)
     response = requests.get(total_clicks, headers=headers)
@@ -18,12 +21,12 @@ def total_clicks(headers, user_link):
 
     return response.json()["total_clicks"]
 
-def is_bitlink(headers, user_link):
+def is_bitlink(user_link):
+    headers = {"Authorization": os.getenv("BITLY_TOKEN")}
     cheak_link = 'https://api-ssl.bitly.com/v4/bitlinks/{bitlink}'
     cheaker = cheak_link.format(bitlink=user_link)
     response = requests.get(cheaker, headers=headers)
     it_is_bitlink = response.ok
-    print(it_is_bitlink)
 
     return it_is_bitlink
 
@@ -40,10 +43,8 @@ def main():
     headers, params = {"Authorization": os.getenv("BITLY_TOKEN")}, {"long_url": user_link}
 
     if is_bitlink(headers, user_link)==True:
-        print(1)
         print('Колличество переходов по ссылки Битли:', total_clicks(headers, user_link))
     else:
-        print(2)
         print(f'http://{shorten_link(headers, params)}')
 
 if __name__ == "__main__":

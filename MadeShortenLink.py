@@ -2,7 +2,6 @@ import requests
 import os
 import argparse
 
-
 def shorten_link():
     headers={"Authorization": os.getenv("BITLY_TOKEN")}
     params={"long_url": user_link}
@@ -40,12 +39,10 @@ def main():
     name_url = parser.parse_args()
     user_link = format(name_url.URL)
 
-    headers, params = {"Authorization": os.getenv("BITLY_TOKEN")}, {"long_url": user_link}
-
-    if is_bitlink(headers, user_link)==True:
-        print('Колличество переходов по ссылки Битли:', total_clicks(headers, user_link))
+    if is_bitlink(user_link)==True:
+        print('Колличество переходов по ссылки Битли:', total_clicks(user_link))
     else:
-        print(f'http://{shorten_link(headers, params)}')
+        print(f'http://{shorten_link()}')
 
 if __name__ == "__main__":
     main()

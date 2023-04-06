@@ -2,7 +2,7 @@ import requests
 import os
 import argparse
 
-def shorten_link():
+def shorten_link(user_link):
     headers={"Authorization": os.getenv("BITLY_TOKEN")}
     params={"long_url": user_link}
     short_link = 'https://api-ssl.bitly.com/v4/bitlinks'
@@ -42,7 +42,7 @@ def main():
     if is_bitlink(user_link)==True:
         print('Колличество переходов по ссылки Битли:', total_clicks(user_link))
     else:
-        print(f'http://{shorten_link()}')
+        print(f'http://{shorten_link(user_link)}')
 
 if __name__ == "__main__":
     main()

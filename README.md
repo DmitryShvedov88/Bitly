@@ -19,4 +19,4 @@ Run the program in the terminal and enter either a link or a short link and get 
 - You should have TOKEN for autorisation.
 
 ####Project Goals
-This code was written for educational purposes as part of an online course for web developers at dvmn.org.
+**This code was written for educational purposes as part of an online course for web developers at [dvmn.org](https://dvmn.org/modules/).**

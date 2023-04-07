@@ -10,13 +10,13 @@ Use pip (or pip3, if there is a conflict with Python2) to install dependencies.
 `pip install -r requirements.txt`  
 
 ####Environment variables:
-from requests.exceptions  
-import MissingSchema  
-from dotenv  
-import load_dotenv
-find_dotenv  
-load_dotenv(find_dotenv())  
-You should have TOKEN for autorisation.
+- from requests.exceptions  
+- import MissingSchema  
+- from dotenv  
+- import load_dotenv
+- find_dotenv  
+- load_dotenv(find_dotenv())  
+- You should have TOKEN for autorisation.
 
 ####Project Goals
 This code was written for educational purposes as part of an online course for web developers at dvmn.org.

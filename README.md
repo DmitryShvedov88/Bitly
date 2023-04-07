@@ -4,9 +4,9 @@ This application is designed to create short links through the bitly service. Yo
 It is also possible to check how many times a short link was accessed. To do this, give a short link to the program input and get a response.
 
 Run the program in the terminal and enter either a link or a short link and get the desired result.
-####How to install
-Python3 should already be installed.  
-Use pip (or pip3, if there is a conflict with Python2) to install dependencies.  
+####How to install  
+1. Python3 should already be installed.  
+2. Use pip (or pip3, if there is a conflict with Python2) to install dependencies.  
 `pip install -r requirements.txt`  
 
 ####Environment variables:

@@ -4,7 +4,7 @@ import argparse
 
 
 def shorten_link(user_link):
-    headers = {"Authorization": os.getenv("BITLY_TOKEN")}
+    headers = {"Authorization": f'Bearer {os.getenv("BITLY_TOKEN")}'}
     params = {"long_url": user_link}
     short_link = 'https://api-ssl.bitly.com/v4/bitlinks'
     response = requests.post(short_link, json=params, headers=headers)
@@ -14,7 +14,7 @@ def shorten_link(user_link):
 
 
 def total_clicks(user_link):
-    headers = {"Authorization": os.getenv("BITLY_TOKEN")}
+    headers = {"Authorization": f'Bearer {os.getenv("BITLY_TOKEN")}'}
     summ_link = 'https://api-ssl.bitly.com/v4/bitlinks/{bitlink}/clicks/summary'
     total_clicks_repl = summ_link.format(bitlink=user_link)
     response = requests.get(total_clicks_repl, headers=headers)
@@ -24,7 +24,7 @@ def total_clicks(user_link):
 
 
 def is_bitlink(user_link):
-    headers = {"Authorization": os.getenv("BITLY_TOKEN")}
+    headers = {"Authorization": f'Bearer {os.getenv("BITLY_TOKEN")}'}
     cheak_link = 'https://api-ssl.bitly.com/v4/bitlinks/{bitlink}'
     cheaker = cheak_link.format(bitlink=user_link)
     response = requests.get(cheaker, headers=headers)

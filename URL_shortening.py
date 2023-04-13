@@ -45,7 +45,7 @@ def main():
     if is_bitlink(headers, user_link):
         print('Колличество переходов по ссылки Битли:', total_clicks(headers, user_link))
     else:
-        print(f'http://{shorten_link(headers, user_link)}')
+        print(shorten_link(headers, user_link))
 
 
 if __name__ == "__main__":

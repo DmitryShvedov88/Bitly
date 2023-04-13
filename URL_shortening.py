@@ -32,20 +32,21 @@ def is_bitlink(headers, user_link):
 
 def main():
     from dotenv import load_dotenv, find_dotenv
+    from urllib.parse import urlparse
     load_dotenv(find_dotenv())
 
     parser = argparse.ArgumentParser()
     parser.add_argument('URL', help='Введите ссылку')
 
     name_url = parser.parse_args()
-    user_link = format(name_url.URL)
+    user_link = urlparse(format(name_url.URL))
 
     headers = {"Authorization": f'Bearer {os.getenv("BITLY_TOKEN")}'}
 
     if is_bitlink(headers, user_link):
         print('Колличество переходов по ссылки Битли:', total_clicks(headers, user_link))
     else:
-        print(shorten_link(headers, user_link))
+        print(f'http://{shorten_link(headers, user_link)}')
 
 
 if __name__ == "__main__":

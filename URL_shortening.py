@@ -39,14 +39,16 @@ def main():
     parser.add_argument('URL', help='Введите ссылку')
 
     name_url = parser.parse_args()
-    user_link = urlparse(format(name_url.URL))
+    user_link = format(name_url.URL)
+    parsed_link=urlparse(user_link)
+    print(parsed_link)
 
     headers = {"Authorization": f'Bearer {os.getenv("BITLY_TOKEN")}'}
 
     if is_bitlink(headers, user_link):
         print('Колличество переходов по ссылки Битли:', total_clicks(headers, user_link))
     else:
-        print(f'http://{shorten_link(headers, user_link)}')
+        print(f'{parsed_link.scheme}://{shorten_link(headers, user_link)}')
 
 
 if __name__ == "__main__":
